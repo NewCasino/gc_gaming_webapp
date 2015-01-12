@@ -1,3 +1,13 @@
 // Place all the styles related to the login controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* make #my-button green with yellow text */
+#my-button {
+    background: green;
+    color: yellow;
+}
+
+#my-button::shadow #ripple {
+  color: blue;
+}
