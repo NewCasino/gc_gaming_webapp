@@ -4,10 +4,10 @@
 
 /* make #my-button green with yellow text */
 #my-button {
-    background: green;
-    color: yellow;
+    background: #B6B6B6;
+    color: #FFFFFF;
 }
 
 #my-button::shadow #ripple {
-  color: blue;
+  color: #F44336;
 }
