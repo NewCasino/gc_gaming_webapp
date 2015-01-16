@@ -1,0 +1,22 @@
+// Place all the styles related to the Raids controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+#box {
+    background-color: #3D6AA2;
+    width: 80%;
+    position: absolute;
+}
+
+.box-shadow:after {
+    content: "";
+    -webkit-box-shadow: 0px 0px 8px 2px #000000;
+       -moz-box-shadow: 0px 0px 8px 2px #000000;
+            box-shadow: 0px 0px 8px 2px #000000;
+}
+.circular {
+	width: 80px;
+	height: 80px;
+	border-radius: 150px;
+	-webkit-border-radius: 150px;
+	-moz-border-radius: 150px;
+	}

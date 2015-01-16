@@ -2,9 +2,10 @@
 <div style="position:absolute; left:0; right:0; top:0; bottom:0; margin:auto; max-width:100%; max-height:100%; overflow:auto; width:70%; height: 600px;">
 <h1>gC Gaming Raid Application</h1>
 <p>Login as an existing user or register as a new one</p>
-<paper-input style="width: 30%;" label="Username" floatingLabel="Username"></paper-input> <br>
-<paper-input-decorator style="width:30%"label="Password" floatingLabel="Password">
-   <input id="password" is="core-input" type="password"/>
+<%= @sessionid %>
+<%= @cookie %>
+<paper-input-decorator style="width:30%"label="Username" floatingLabel="Username">
+   <input id="username" is="core-input" name="username"/>
 </paper-input-decorator><br>
 
 <%= form_tag(method: "post") do %>
@@ -12,6 +13,16 @@
 <%=link_to "Login", :controller => 'login', :action => 'login' %>
 </paper-button>
 <paper-button raised id="my-button">Register</paper-button>
+<% form_tag("/login", method: "post") do %>
+<%= text_field_tag(:user) %>
+<%= text_field_tag(:passwd) %>
+<%= submit_tag("Logi") %>
 <% end %>
 
+<%= form_tag({controller: "login", action: "auth"}, method: "post") do %>
+  <%= label_tag(:username, "Username") %>
+  <%= text_field_tag(:username) %>
+<%= text_field_tag(:password) %>
+  <%= submit_tag("Search") %>
+<% end %>
 </div>
