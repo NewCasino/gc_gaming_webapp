@@ -7,8 +7,8 @@
    <input id="password" is="core-input" type="password"/>
 </paper-input-decorator><br>
 
-<%= form_tag("/login", method: "post") do %>
-<paper-button raised id="my-button">+
+<%= form_tag(method: "post") do %>
+<paper-button raised id="my-button">
 <%=link_to "Login", :controller => 'login', :action => 'login' %>
 </paper-button>
 <paper-button raised id="my-button">Register</paper-button>
