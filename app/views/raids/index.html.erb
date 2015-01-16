@@ -1,0 +1,11 @@
+<h1>List of upcoming Raids</h1>
+<p>Find me in app/views/raids/index.html.erb</p>
+<% @raids.each do |raid| %>
+<div>
+<p><b><%= link_to raid["name"], raids_details_path(:id => raid["id"])%></b></p>
+<p><%= raid["description"] %></p>
+<p><%= raid["startdate"] %></p>
+<p><%= raid["enddate"] %></p>
+<p><b>Raidlead: </b><%= raid["raidlead"] %></p>
+</div>
+<% end %>

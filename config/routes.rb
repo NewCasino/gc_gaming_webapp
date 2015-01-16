@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
+
+  root 'login#index'
+  get 'raids/index'
+  get 'raids/details'
+  get 'raids/create'
+
   get 'login/index'
   post 'login/login'
-
+  post 'login/auth'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

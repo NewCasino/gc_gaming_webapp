@@ -1,0 +1,60 @@
+<h1> <%= @raid["name"] %></h1>
+<p>
+<%= @raid["description"]%></br></br>
+Raidlead: <%= @raid["raidlead"] %></br>
+Start: <%= @raid["startdate"] %></br>
+End: <%= @raid["enddate"] %></br>
+</p>
+<% @raiddetails["members"].each do |member| %>
+<div class="card">
+<p><b><%= member["charname"] %></b></p>
+<p><%= image_tag(member["thumbnail"], :class => "circular") %></p>
+<p>Level: <%= member["level"] %></p>
+<%
+a=member["character_class"]
+name = ""
+case a
+when 1
+ name="Warrior"
+when 2
+ name="Paladin"
+when 3
+ name="Hunter"
+when 4
+ name="Rogue"
+when 5
+ name="Priest"
+when 6
+ name="Death Knight"
+when 7
+ name="Shaman"
+when 8
+ name="Mage"
+when 9
+ name="Warlock"
+when 10
+ name="Monk"
+when 11
+ name="Druid"
+  %>
+<% end %>
+ </p>
+<p>Class: <%= name  %> </p>
+<p>Role: <%= member["role"] %></p>
+<p>Itemlevel: <%= member["itemlvlequipped"] %> ( <%= member["itemlvltotal"] %> )</p>
+</div>
+<% end %>
+
+<% if session[:moderator].nil? %>
+<% else %>
+<p>Delete this raid</p>
+<% end %>
+<% if @signedup == true %>
+<paper-button raised id="my-button" type="submit">Sign off
+</paper-button>
+<% else %>
+<paper-button raised id="my-button">Register</paper-button>
+<% end %>
+<p>
+<%= @signedup %>
+</p>
