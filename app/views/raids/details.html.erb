@@ -51,7 +51,7 @@ when 11
 <p>Delete this raid</p>
 <% end %>
 <% if @signedup == true %>
-<%= button_to(raids_signoff_path), method: :post do %>
+<%= link_to(raids_signoff_path, method: :post) do %>
 <paper-fab icon="check" style="color: white; background: #259b24"></paper-fab>
 <% end %>
 <% else %>

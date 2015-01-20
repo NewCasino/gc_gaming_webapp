@@ -1,4 +1,6 @@
 class RaidsController < ApplicationController
+
+@@currentraid = ''
   def index
         http = Net::HTTP.new("api.dotards.net", 3000)
         request = Net::HTTP::Get.new("/api/v1/raids")
@@ -17,7 +19,7 @@ class RaidsController < ApplicationController
 	res.body.force_encoding("ISO-8859-1").encode("UTF-8")
 	@raiddetails = ActiveSupport::JSON.decode(res.body)
 	@raid = @raiddetails["raid"]
-
+	@@currentraid = @raid
 	if session[:logged_in].nil?
 	 #if user is not logged in don't do anything (view only mode)
 	else
@@ -34,51 +36,35 @@ class RaidsController < ApplicationController
   end
 
   def signup
-  	uri = URI('http://dotards.net:3000/api/v1/raids/details')
-	uri.query = URI.encode_www_form(params)
-	puts params[:id]
-	res = Net::HTTP.get_response(uri)
-	res.body.force_encoding("ISO-8859-1").encode("UTF-8")
-	@raiddetails = ActiveSupport::JSON.decode(res.body)
-	@raid = @raiddetails["raid"]
-  	http = Net::HTTP.new("api.dotards.net", 3000)
+    http = Net::HTTP.new("api.dotards.net", 3000)
 
-  	#Have user select character and role
+    #Have user select character and role
     request = Net::HTTP::Post.new("/api/v1/raids/sign_up")
-    request.set_form_data({"id" => @raid["id"], "userid" => session[:user_id], "characterid" => "1", "role" => "ROLE"})
+    request.set_form_data({"id" => @@currentraid["id"], "userid" => session[:user_id], "characterid" => "4", "role" => "ROLE"})
     response = http.request(request)
 
     json = ActiveSupport::JSON.decode(response.body)
-    code == json["code"]
+    code = json["code"]
     if code == 0
-    	redirect_to :controller => 'raids', :action => 'details'
-    else
-
+	redirect_to :controller => 'raids', :action => 'details', :id => @@currentraid["id"]
     end
   end
 
   def signoff
-  	uri = URI('http://dotards.net:3000/api/v1/raids/details')
-	uri.query = URI.encode_www_form(params)
-	puts params[:id]
-	res = Net::HTTP.get_response(uri)
-	res.body.force_encoding("ISO-8859-1").encode("UTF-8")
-	@raiddetails = ActiveSupport::JSON.decode(res.body)
-	@raid = @raiddetails["raid"]
 
-  	 http = Net::HTTP.new("api.dotards.net", 3000)
+    http = Net::HTTP.new("api.dotards.net", 3000)
 
   	#Have user select character and role
     request = Net::HTTP::Post.new("/api/v1/raids/sign_off")
-    request.set_form_data({"id" => @raid["id"], "userid" => session[:user_id]})
+    request.set_form_data({"id" => @@currentraid["id"], "userid" => session[:user_id]})
+
+    puts 'Sign Off'
     response = http.request(request)
 
     json = ActiveSupport::JSON.decode(response.body)
-    code == json["code"]
+    code = json["code"]
     if code == 0
-    	redirect_to :controller => 'raids', :action => 'details'
-    else
-    	redirect_to :controller => 'raids', :action => 'index'
+    	redirect_to :controller => 'raids', :action => 'details', :id => @@currentraid["id"]
     end
 
   end

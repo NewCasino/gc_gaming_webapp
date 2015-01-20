@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'characters/index'
+
+  get 'characters/add'
+
   root 'login#index'
   get 'raids/index'
   get 'raids/details'
