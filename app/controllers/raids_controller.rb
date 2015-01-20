@@ -34,6 +34,13 @@ class RaidsController < ApplicationController
   end
 
   def signup
+  	uri = URI('http://dotards.net:3000/api/v1/raids/details')
+	uri.query = URI.encode_www_form(params)
+	puts params[:id]
+	res = Net::HTTP.get_response(uri)
+	res.body.force_encoding("ISO-8859-1").encode("UTF-8")
+	@raiddetails = ActiveSupport::JSON.decode(res.body)
+	@raid = @raiddetails["raid"]
   	http = Net::HTTP.new("api.dotards.net", 3000)
 
   	#Have user select character and role
@@ -51,6 +58,14 @@ class RaidsController < ApplicationController
   end
 
   def signoff
+  	uri = URI('http://dotards.net:3000/api/v1/raids/details')
+	uri.query = URI.encode_www_form(params)
+	puts params[:id]
+	res = Net::HTTP.get_response(uri)
+	res.body.force_encoding("ISO-8859-1").encode("UTF-8")
+	@raiddetails = ActiveSupport::JSON.decode(res.body)
+	@raid = @raiddetails["raid"]
+
   	 http = Net::HTTP.new("api.dotards.net", 3000)
 
   	#Have user select character and role
