@@ -1,6 +1,7 @@
 class RaidsController < ApplicationController
 
 @@currentraid = ''
+
   def index
         http = Net::HTTP.new("api.dotards.net", 3000)
         request = Net::HTTP::Get.new("/api/v1/raids")
