@@ -1,3 +1,4 @@
+<%= html_import_tag 'application'%>
 <h1> <%= @raid["name"] %></h1>
 <p>
 <%= @raid["description"]%></br></br>
@@ -50,9 +51,10 @@ when 11
 <p>Delete this raid</p>
 <% end %>
 <% if @signedup == true %>
-<paper-button raised id="my-button" type="submit">Sign off
+<paper-fab icon="check" style="color: white; background: green"></paper-fab>
 </paper-button>
 <% else %>
+<paper-fab icon="save" style="color: white; background: yellow"></paper-fab>
 <paper-button raised id="my-button">Register</paper-button>
 <% end %>
 <p>

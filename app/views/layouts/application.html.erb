@@ -1,3 +1,4 @@
+<%= html_import_tag 'application'%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +8,19 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+<core-toolbar style="background: #F44336; color: white;">
+<paper-menu-button>
+    <paper-icon-button icon="menu" role="button" tabindex="0" aria-label="menu"></paper-icon-button>
+    <paper-dropdown class="dropdown">
+        <core-menu class="menu">
+            <paper-item raised>Share</paper-item>
+            <paper-item>Settings</paper-item>
+            <paper-item>Help</paper-item>
+        </core-menu>
+    </paper-dropdown>
+</paper-menu-button>
+<span flex="">gC Gaming</span>
+</core-toolbar>
 <%= yield %>
 
 </body>

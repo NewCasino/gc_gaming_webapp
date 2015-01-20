@@ -54,4 +54,6 @@ skip_before_filter :require_login
         #        response = http.request(request)
         #
   end
+  def register
+  end
 end

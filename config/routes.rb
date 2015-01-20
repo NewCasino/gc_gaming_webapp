@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'raids/create'
 
   get 'login/index'
+  get 'login/register'
   post 'login/login'
   post 'login/auth'
   # The priority is based upon order of creation: first created -> highest priority.

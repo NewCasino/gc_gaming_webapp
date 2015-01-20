@@ -2,27 +2,19 @@
 <div style="position:absolute; left:0; right:0; top:0; bottom:0; margin:auto; max-width:100%; max-height:100%; overflow:auto; width:70%; height: 600px;">
 <h1>gC Gaming Raid Application</h1>
 <p>Login as an existing user or register as a new one</p>
-<%= @sessionid %>
-<%= @cookie %>
-<paper-input-decorator style="width:30%"label="Username" floatingLabel="Username">
-   <input id="username" is="core-input" name="username"/>
-</paper-input-decorator><br>
-
-<%= form_tag(method: "post") do %>
-<paper-button raised id="my-button">
-<%=link_to "Login", :controller => 'login', :action => 'login' %>
-</paper-button>
-<paper-button raised id="my-button">Register</paper-button>
-<% form_tag("/login", method: "post") do %>
-<%= text_field_tag(:user) %>
-<%= text_field_tag(:passwd) %>
-<%= submit_tag("Logi") %>
-<% end %>
 
 <%= form_tag({controller: "login", action: "auth"}, method: "post") do %>
-  <%= label_tag(:username, "Username") %>
+<paper-input-decorator label="Your Name">
   <%= text_field_tag(:username) %>
-<%= text_field_tag(:password) %>
-  <%= submit_tag("Search") %>
+</paper-input-decorator>
+<paper-input-decorator label="Password" type="password">
+<%= password_field_tag(:password) %>
+</paper-input-decorator>
+<%= button_tag(type: "submit") do %>
+<paper-button raised type="submit">Login</paper-button>
+<% end %>
+<% end %>
+<%= link_to(login_register_path) do %>
+<p><paper-button raised>Register</paper-button></p>
 <% end %>
 </div>
