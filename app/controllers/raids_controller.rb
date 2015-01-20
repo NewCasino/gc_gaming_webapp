@@ -40,9 +40,23 @@ class RaidsController < ApplicationController
   end
 
   def signup
+  	
+  	http = Net::HTTP.new("api.dotards.net", 3000)
 
+  	#Have user select character and role
+    request = Net::HTTP::Post.new("/api/v1/raids/sign_up")
+    request.set_form_data({"id" => @raid["id"], "userid" => session[:user_id]}, "characterid" => "1", "role" => "ROLE")
+    response = http.request(request)
+
+    json = ActiveSupport::JSON.decode(response.body)
+    code == json["code"]
+    if code == 0
+
+    else
+
+    end
   end
-  
+
   def signoff
 
   end
