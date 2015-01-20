@@ -63,7 +63,7 @@ class RaidsController < ApplicationController
     if code == 0
     	redirect_to :controller => 'raids', :action => 'details'
     else
-
+    	redirect_to :controller => 'raids', :action => 'index'
     end
 
   end
