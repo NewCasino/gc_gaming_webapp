@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   get 'raids/index'
   get 'raids/details'
   get 'raids/create'
+  post 'raids/signup'
+  post 'raids/signoff'
 
   get 'login/index'
   get 'login/register'

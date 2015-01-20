@@ -38,4 +38,12 @@ class RaidsController < ApplicationController
 	end
 	end
   end
+
+  def signup
+
+  end
+  
+  def signoff
+
+  end
 end

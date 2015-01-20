@@ -51,12 +51,13 @@ when 11
 <p>Delete this raid</p>
 <% end %>
 <% if @signedup == true %>
-<paper-fab icon="check" style="color: white; background: green"></paper-fab>
-</paper-button>
+<%= link_to(login_register_path) do %>
+<paper-fab icon="check" style="color: white; background: #259b24"></paper-fab>
+<% end %>
 <% else %>
-<paper-fab icon="save" style="color: white; background: yellow"></paper-fab>
-<paper-button raised id="my-button">Register</paper-button>
+<%= link_to(login_register_path) do %>
+<paper-fab icon="save" style="color: white; background: #ffeb3b"></paper-fab>
+<% end %>
 <% end %>
 <p>
-<%= @signedup %>
 </p>
