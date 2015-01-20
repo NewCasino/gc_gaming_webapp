@@ -27,11 +27,11 @@ skip_before_filter :require_login
 	#response = http.request(request)
   end
   def auth
-        http = Net::HTTP.new("api.dotards.net", 3000)
+    http = Net::HTTP.new("api.dotards.net", 3000)
 
-        request = Net::HTTP::Post.new("/api/v1/users/login")
-        request.set_form_data({"username" => params[:username], "password" => params[:password]})
-        puts params[:username]
+    request = Net::HTTP::Post.new("/api/v1/users/login")
+    request.set_form_data({"username" => params[:username], "password" => params[:password]})
+    puts params[:username]
 	response = http.request(request)
 	
 	#render json: {response: response.body}
@@ -55,5 +55,6 @@ skip_before_filter :require_login
         #
   end
   def register
+
   end
 end
