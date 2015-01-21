@@ -57,4 +57,20 @@ skip_before_filter :require_login
   def register
 
   end
+  def send_registration
+  http = Net::HTTP.new("api.dotards.net", 3000)
+
+    request = Net::HTTP::Post.new("/api/v1/users/register")
+    request.set_form_data({"username" => params[:username], "password" => params[:password]})
+    response = http.request(request)
+
+    json = ActiveSupport::JSON.decode(response.body)
+    code = json["code"]
+
+   if code == 0
+   redirect_to root_path
+   else
+    redirect_to login_register_path, :flash => { :error => "Failed to register!" }
+   end
+   end
 end

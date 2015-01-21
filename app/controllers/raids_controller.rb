@@ -2,6 +2,7 @@ class RaidsController < ApplicationController
 
 @@currentraid = ''
 
+
   def index
         http = Net::HTTP.new("api.dotards.net", 3000)
         request = Net::HTTP::Get.new("/api/v1/raids")
@@ -37,11 +38,21 @@ class RaidsController < ApplicationController
   end
 
   def signup
+        uri = URI("http://dotards.net:3000/api/v1/characters/mychars")
+        uri.query = URI.encode_www_form(params)
+        res = Net::HTTP.get_response(uri)
+        res.body.force_encoding("ISO-8859-1").encode("UTF-8")
+        @mychars = ActiveSupport::JSON.decode(res.body)
+        @chars = @mychars["characters"]
+  end
+
+  def registersignup
     http = Net::HTTP.new("api.dotards.net", 3000)
 
     #Have user select character and role
     request = Net::HTTP::Post.new("/api/v1/raids/sign_up")
-    request.set_form_data({"id" => @@currentraid["id"], "userid" => session[:user_id], "characterid" => "4", "role" => "ROLE"})
+    puts params[:raidchar]
+    request.set_form_data({"id" => @@currentraid["id"], "userid" => session[:user_id], "characterid" => params[:raidchar], "role" => params[:role]})
     response = http.request(request)
 
     json = ActiveSupport::JSON.decode(response.body)

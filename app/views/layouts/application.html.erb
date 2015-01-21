@@ -20,8 +20,11 @@
     </paper-dropdown>
 </paper-menu-button>
 <span flex="">gC Gaming</span>
-<%= link_to(characters_index_path) do %>
-<span flex="">Characters</span>
+<%= link_to(raids_index_path) do %>
+<span flex="" style="color:white">Raids</span>
+<% end %>
+<%= link_to(characters_index_path(:userid => session[:user_id])) do %>
+<span flex="" style="color:white">Characters</span>
 <% end %>
 </core-toolbar>
 <%= yield %>

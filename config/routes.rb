@@ -1,18 +1,21 @@
 Rails.application.routes.draw do
 
   get 'characters/index'
-
   get 'characters/add'
-
-  root 'login#index'
+  get 'characters/load_character'
+  get 'characters/save_character'
+  
+root 'login#index'
   get 'raids/index'
   get 'raids/details'
   get 'raids/create'
-  post 'raids/signup'
+  get 'raids/signup'
   post 'raids/signoff'
+  post 'raids/registersignup'
 
   get 'login/index'
   get 'login/register'
+  post 'login/send_registration'
   post 'login/login'
   post 'login/auth'
   # The priority is based upon order of creation: first created -> highest priority.

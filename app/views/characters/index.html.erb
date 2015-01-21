@@ -1,2 +1,13 @@
+<%= html_import_tag 'application'%>
 <h1>Characters#index</h1>
 <p>Find me in app/views/characters/index.html.erb</p>
+<%= link_to(characters_add_path) do %>
+<paper-fab icon="add" style="color: white; background: #FFC107; margin: 8px"></paper-fab>
+<% end %>
+<% @chars.each do |char| %>
+<div>
+<paper-shadow z="1" style="padding: 8px">
+<p><%= char["name"] %></p>
+</paper-shadow>
+</div>
+<% end %>

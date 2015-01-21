@@ -1,1 +1,12 @@
 <h1>Registration</h1>
+<%= form_tag({controller: "login", action: "send_registration"}, method: "post") do %>
+<paper-input-decorator label="Your Name">
+  <%= text_field_tag(:username) %>
+</paper-input-decorator>
+<paper-input-decorator label="Password" type="password">
+<%= password_field_tag(:password) %>
+</paper-input-decorator>
+<%= button_to(type: "submit") do %>
+<paper-button raised>Register</paper-button>
+<% end %>
+<% end %>

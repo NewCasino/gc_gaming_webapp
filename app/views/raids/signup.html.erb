@@ -1,0 +1,49 @@
+<%= html_import_tag 'application'%>
+
+<%= form_tag({controller: "raids", action: "registersignup"}, method: "post") do %>
+<p>Select your character</p>
+<select name="raidchar" id="raidchar">
+<% @chars.each do |char| %>
+ <% @name_tld = char["id"] %>
+<%
+a=char["character_class"]
+name = ""
+case a
+when 1
+ name="Warrior"
+when 2
+ name="Paladin"
+when 3
+ name="Hunter"
+when 4
+ name="Rogue"
+when 5
+ name="Priest"
+when 6
+ name="Death Knight"
+when 7
+ name="Shaman"
+when 8
+ name="Mage"
+when 9
+ name="Warlock"
+when 10
+ name="Monk"
+when 11
+ name="Druid"
+  %>
+<% end %>
+
+<option value="<%=@name_tld%>">Level <%=char["level"] %> <%= name %> <%= char["name"] %> Itemlevel: <%=char["itemlevelequipped"] %> (<%=char["itemleveltotal"] %>) </option>
+<% end %>
+</select>
+<p>Select your role</p>
+<select name="role" id="role" style="margin-bottom: 8px">
+<option>Tank</option>
+<option>Heal</option>
+<option>Damage</option>
+</select>
+<%= button_to(type: "submit") do %>
+<paper-button raised>Sign Up</paper-button>
+<% end %>
+<% end %>

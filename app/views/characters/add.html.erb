@@ -1,2 +1,25 @@
 <h1>Characters#add</h1>
 <p>Find me in app/views/characters/add.html.erb</p>
+<%= form_tag({controller: "characters", action: "load_character"}, method: "get") do %>
+<paper-input-decorator label="Character Server">
+  <%= text_field_tag(:charserver) %>
+</paper-input-decorator>
+<paper-input-decorator label="Character Name">
+<%= text_field_tag(:charname) %>
+</paper-input-decorator>
+<%= button_to(type: "submit") do %>
+<paper-button raised>Load Character</paper-button>
+<% end %>
+<% end %>
+<p>Name: <%=params[:name]%></p>
+<p>Class: <%=params[:class] %></p>
+<p>Race:<%=params[:race]%> </p>
+<p>Level:<%=params[:level]%> </p>
+<p>Item Level:<%=params[:itemlevelequipped]%> <%=params[:itemleveltotal]%> </p>
+
+<%= link_to(:controller => :characters, :action => :load_character) do %>
+<paper-button raised>Load Character</paper-button>
+<% end %>
+<%= link_to(:controller => :characters, :action => :save_character, :character => @character) do %>
+<paper-button raised>Save Character</paper-button>
+<% end %>

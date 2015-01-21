@@ -1,6 +1,17 @@
 <%= html_import_tag 'application'%>
 <h1> <%= @raid["name"] %></h1>
 <p>
+<% if @signedup == true %>
+<%= link_to(raids_signoff_path, method: :post) do %>
+<paper-fab icon="check" style="color: white; background: #259b24;"></paper-fab>
+<% end %>
+<% else %>
+<%= link_to(raids_signup_path(:userid => session[:user_id], :raid_id => @raid["id"])) do %>
+<paper-fab icon="save" style="color: white; background: #FFC107"></paper-fab>
+<% end %>
+<% end %>
+</p>
+<p>
 <%= @raid["description"]%></br></br>
 Raidlead: <%= @raid["raidlead"] %></br>
 Start: <%= @raid["startdate"] %></br>
@@ -45,24 +56,3 @@ when 11
 <p>Itemlevel: <%= member["itemlvlequipped"] %> ( <%= member["itemlvltotal"] %> )</p>
 </div>
 <% end %>
-
-<% if session[:moderator].nil? %>
-<% else %>
-<p>Delete this raid</p>
-<% end %>
-<% if @signedup == true %>
-<%= link_to(raids_signoff_path, method: :post) do %>
-<paper-fab icon="check" style="color: white; background: #259b24"></paper-fab>
-<% end %>
-<% else %>
-<%= link_to(raids_signup_path, method: :post) do %>
-<paper-fab icon="save" style="color: white; background: #ffeb3b"></paper-fab>
-<paper-action-dialog backdrop="" autoclosedisabled="" layered="false" role="dialog" layout="" vertical="" tabindex="-1" style="position: fixed; outline: none; z-index: 12; top: 119px; left: 66.5px;">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-
-      <paper-button affirmative="" autofocus="" role="button" tabindex="0">Tap me to close</paper-button>
-    </paper-action-dialog>
-<% end %>
-<% end %>
-<p>
-</p>
